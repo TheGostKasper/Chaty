@@ -1,0 +1,184 @@
+.App {
+  /* text-align: center; */
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 50px;
+  float: left;
+  margin-top: -10px;
+}
+.App-header ul{
+  display: inline-flex;
+}
+.App-header ul li a{
+  text-decoration: none;
+  padding: 12px;
+  color: white;
+  /* background: green; */
+  margin: 5px;
+}
+.App-header ul li a:hover{
+  background: #2b7d26
+}
+.App-header {
+  background-color: #222;
+  /* height: 150px; */
+  padding: 10px;
+  color: white;
+}
+.avatar{
+  width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.App-title {
+  font-size: 1.5em;
+  float: right;
+  margin-top: 1px;
+}
+
+.App-intro {
+  font-size: large;
+}
+ul{
+  list-style: none;
+}
+.outOfStock{
+  color: red;
+}
+.stock{
+  color: black;
+}
+.hide{
+  display: none;
+}
+.show{
+display: block;
+}
+.loginContainer{
+  padding: 10px;
+  margin: 5px;
+}
+._btn{
+  padding: 8px;
+  background: #25651b;
+  border: 1px solid #64b143;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 300;
+  cursor: pointer;
+}
+.input{
+  width: 200px;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 19px;
+}
+.sidebar{
+  width: 30%;
+    display: inline-flex;
+}
+.messages{
+  display: inline-flex;
+  width: 70%;
+}
+.panel-body{
+min-height: 300px;
+}
+.profile{
+  display: inline-flex;
+  width: 100%;
+  padding: 2px;
+  cursor: pointer;
+  /* border-bottom: 1px solid #454645; */
+}
+.profile .username{
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.lstusers{
+  border-right: 1px solid #454645;
+  min-height: 470px;
+}
+.status{
+  background: rgb(66, 183, 42);
+  border-radius: 50%;
+  display: inline-block;
+  height: 6px;
+  /* margin-left: 4px; */
+  width: 6px;
+  /* margin-top: 6px; */
+  margin: 15px;
+}
+.form{
+  background: rgba(19, 35, 47, 0.9);
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+#signup, #login{
+  padding: 10px;
+  color: #ffffff;
+}
+.btn-chaty{
+  background: #1ab188;
+    color: #2a3843;
+    font-size: 19px;
+    font-weight: lighter;
+    border: 1px solid #2a3843;
+    margin-right: 14px;
+}
+.right{
+  float: right;
+}
+.left{
+  float: left;
+}
+.center{
+  display: block;
+  text-align: center;
+}
+.signup-h1{
+  text-align: center;
+    color: #ffffff;
+    font-weight: 300;
+    margin-top: 20px;
+    font-size: 2em;
+}
+.tab-content{
+  display: grid;
+}
+.tab-group {
+  list-style: none;
+  padding: 0;
+  /* margin-top: 30px; */
+}
+.tab-group li a{
+  display: block;
+  text-decoration: none;
+  padding: 15px;
+  background: rgba(160, 179, 176, 0.25);
+  color: #a0b3b0;
+  font-size: 20px;
+  float: left;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+.tab-group .active a {
+  background: #1ab188;
+  color: #ffffff;
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

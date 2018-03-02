@@ -114,6 +114,12 @@ min-height: 300px;
   /* margin-top: 6px; */
   margin: 15px;
 }
+.read{
+  color: #25651b;
+}
+.unread{
+  color: red;
+}
 .form{
   background: rgba(19, 35, 47, 0.9);
     padding: 40px;

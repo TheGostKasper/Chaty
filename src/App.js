@@ -49,6 +49,10 @@ class App extends Component {
       // console.log(cookies_services.getCookie("connectionId"));
     });
   }
+  logout = () => {
+    cookies_services.deleteCookies(['token','currUser','connectionId']);
+    document.location.href = "/";
+  }
   render() {
     if (this.state.currentUser === null) {
       if (!window.location.href.includes('/login')) {
@@ -69,7 +73,11 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome {this.state.currentUser.name}</h1>
+              <div className="right">
+                <h1 className="App-title">Welcome {this.state.currentUser.name}
+                  <input type="button" className="btn btn-danger" value="Logout" onClick={this.logout} />
+                </h1>
+              </div>
               <ul>
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='/chat'>Chat</Link></li>

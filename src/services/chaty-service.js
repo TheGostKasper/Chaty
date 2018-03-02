@@ -8,12 +8,6 @@ const headers = {
     'Access-Control-Allow-Origin': '*',
     'Authorization': `Bearer ${(token) ? token.replace('"', '').replace('"', '') : ""}`
 };
-// function setHeader() {
-//     let headers = new Headers();
-//     headers.append('Content-Type', 'application/json');
-//     headers.append('Access-Control-Allow-Origin', '*');
-//     headers.append('Authorization',)
-// }
 function callFetch(endPoint, method, body, optHeaders) {
     if (optHeaders && optHeaders.length > 0) {
         optHeaders.forEach(element => {
@@ -34,7 +28,6 @@ function callFetch(endPoint, method, body, optHeaders) {
         return err;
     });
 }
-
 module.exports = {
     services: {
         logIn: (user) => {
@@ -51,6 +44,12 @@ module.exports = {
         getFriends: () => {
             return callFetch('users/friends', 'POST');
         },
+        getChatters:(id)=>{
+            return callFetch(`messages/Init?userId=${id}`, 'Get');
+        },
+        getMessages:(request)=>{
+            return callFetch('messages/ListMessages', 'Post', request);
+        }
         // setConnection:(connectionId)=>{
         //     return callFetch('users/setConnection', 'POST',{connectionId:connectionId});
         // }

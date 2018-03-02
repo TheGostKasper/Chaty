@@ -13,7 +13,8 @@ class Chat extends Component {
       messages: [],
       hubConnection: null,
       tlk: {},
-      friends: []
+      chatters: [],
+      prevMsgs: []
     };
     this.state.currentUser = JSON.parse(cookies_services.getCookie('currUser'));
 
@@ -23,7 +24,6 @@ class Chat extends Component {
   }
   componentDidMount = () => {
     this.props.hubConnection.on('sendPM', (receivedMessage) => {
-      console.log(receivedMessage);
       this.state.messages.push(receivedMessage);
       this.setState({
         messages: this.state.messages
@@ -31,10 +31,10 @@ class Chat extends Component {
     });
 
     this.props.hubConnection.on('newUser', (user) => {
-      this.state.friends.push(user);
-      this.setState({
-        friends: this.state.friends
-      })
+      // this.state.chatters.push(user);
+      // this.setState({
+      //   chatters: this.state.chatters
+      // })
     });
   }
 
@@ -57,11 +57,12 @@ class Chat extends Component {
   };
 
   getInit = () => {
-    services.getFriends()
+    services.getChatters(this.state.currentUser.userId)
       .then((res) => {
+        console.log(res);
         if (res.data)
           this.setState({
-            friends: res.data
+            chatters: res.data
           });
         else alert(res.message);
       })
@@ -69,9 +70,18 @@ class Chat extends Component {
   }
   tlk = (user, e) => {
     this.setState({
-      tlk: user
-      // Get prev msgs
+      tlk: user,
     });
+    services.getMessages({ fromUser: this.state.currentUser.userId, toUser: user.userId, page: 1, pageSize: 10 })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data)
+          this.setState({
+            prevMsgs: res.data
+          });
+        else alert(res.message);
+      })
+      .catch((err) => { console.log(err) });
   }
   render() {
     return (
@@ -80,13 +90,14 @@ class Chat extends Component {
           <div className="lstusers col-4 col-sm-4 col-md-4">
             <div id="sidebar" className="reference-list reference-list-right has-navbar">
               <ul className="list-group">
-                {this.state.friends.map((user, index) => (
-                  <li className="profile" key={user.userId} onClick={this.tlk.bind(this, user)}>
+                {this.state.chatters.map((msg, index) => (
+                  <li className="profile" key={msg.messageId} onClick={this.tlk.bind(this, msg.user)}>
                     <div className="">
-                      <img alt={user.name} src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png" className="avatar" />
-                      <a className="username"> {user.name} </a>
+                      <img alt={msg.user.name} src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png" className="avatar" />
+                      <a className="username"> {msg.user.name} </a>
+                      <p className={(msg.status) ? 'read' : 'unread'}>{msg.content}</p>
                     </div>
-                    <span className={(user.status) ? 'status online' : 'offline'}></span>
+                    <span className={(msg.user.status) ? 'status online' : 'offline'}></span>
                   </li>
                 ))}
               </ul>
@@ -105,7 +116,11 @@ class Chat extends Component {
                     </div>
                   </div>
                   <div className="panel-body">
-
+                    {this.state.prevMsgs.map((message, index) => (
+                      <div className="message" key={index}>
+                        <span style={{ display: 'block' }} > {message.content} </span>
+                      </div>
+                    ))}
                   </div>
                   <div className="panel-footer">
                     <div className="input-group">

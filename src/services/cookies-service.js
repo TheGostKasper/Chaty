@@ -26,12 +26,22 @@ function setCookies(cnames, exdays) {
             setCookie(element.name, element.value, exdays);
         });
 }
-
+function deleteCookie(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+function deleteCookies(cnames) {
+    if (cnames.length > 0)
+        cnames.forEach(element => {
+            deleteCookie(element);
+        });
+}
 module.exports = {
     cookies_services: {
         setCookie: setCookie,
         getCookie: getCookie,
-        setCookies: setCookies
+        setCookies: setCookies,
+        deleteCookie:deleteCookie,
+        deleteCookies:deleteCookies
     }
 
 };

@@ -84,7 +84,7 @@ class App extends Component {
                 <li><Link to='/profile'>Profile</Link></li>
               </ul>
             </header>
-            <div className="container">
+            <div className="_cont">
               <Switch>
                 <Route exact path="/login" render={
                   props => (

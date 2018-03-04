@@ -49,10 +49,11 @@ module.exports = {
         },
         getMessages:(request)=>{
             return callFetch('messages/ListMessages', 'Post', request);
+        },
+        uploadAvatar:(user)=>{
+            user.avatar=user.avatar.split(',')[1];
+            return callFetch('users/uploadAvatar', 'POST',user);
         }
-        // setConnection:(connectionId)=>{
-        //     return callFetch('users/setConnection', 'POST',{connectionId:connectionId});
-        // }
     }
 
 };

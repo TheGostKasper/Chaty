@@ -8,7 +8,7 @@ import { cookies_services } from './services/cookies-service';
 import logo from './logo.svg';
 import './App.css';
 
-import FilterList from './filterList';
+import Search from './users/search';
 import Chat from './chat';
 import Login from './login';
 import Profile from './profile';
@@ -90,7 +90,7 @@ class App extends Component {
                   props => (
                     <Login hubConnection={this.state.hubConnection} />
                   )} />
-                <Route exact path="/" component={FilterList} />
+                <Route exact path="/" component={Search} />
                 <Route exact path="/chat" render={
                   props => (
                     <Chat hubConnection={this.state.hubConnection} />

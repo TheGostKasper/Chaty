@@ -1,3 +1,5 @@
+const hostUrl = 'http://localhost:56395';
+const apiUrl = `${hostUrl}/api`
 module.exports = {
     helpers: {
         scrollToBottom: (className) => {
@@ -11,6 +13,8 @@ module.exports = {
                 else element.style.removeProperty('background');
             }
 
-        }
+        },
+        hostUrl: () => hostUrl,
+        apiUrl: () => apiUrl
     }
 }

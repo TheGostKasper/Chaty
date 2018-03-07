@@ -242,17 +242,39 @@ overflow-y: scroll;
   padding: 20px 0 10px 0;
   background: #fff;
 }
-
+.prof-container{
+  text-align: center;
+}
+.prof-container img{
+  width: 400px;
+}
 .profile-userpic img {
   float: none;
   margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
+  width: 100%;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
 }
-
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
 .profile-usertitle {
   text-align: center;
   margin-top: 20px;
@@ -335,7 +357,19 @@ overflow-y: scroll;
   background: #fff;
   min-height: 460px;
 }
-
+.body-user{
+  padding: 10px;
+  margin: 10px;
+}
+.actions-list{
+  display: inline-flex;
+  float: right;
+}
+.avt-list{
+  width: 50px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
 
 
 

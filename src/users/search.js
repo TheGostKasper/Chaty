@@ -42,7 +42,7 @@ class Search extends Component {
                     </span>
                 </div>
                 <div className="users">
-                    <UserList users={this.state.users} />
+                    <UserList hubConnection={this.props.hubConnection} users={this.state.users} />
                 </div>
             </div>
 

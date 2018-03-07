@@ -76,6 +76,7 @@ class Chat extends Component {
   getInit = () => {
     services.getChatters(this.state.currentUser.userId)
       .then((res) => {
+        console.log(res.data)
         if (res.data)
           this.setState({
             chatters: res.data
@@ -84,11 +85,11 @@ class Chat extends Component {
       })
       .catch((err) => { console.log(err) });
   }
-  tlk = (user,index, e) => {
+  tlk = (user, index, e) => {
     this.setState({
       tlk: user,
     });
-    common.highlightDiv(index,".profile");
+    common.highlightDiv(index, ".profile");
     this.getFeeds(user);
   }
   scrollFeeds = () => {
@@ -120,12 +121,11 @@ class Chat extends Component {
             <div id="sidebar" className="reference-list reference-list-right has-navbar">
               <ul className="list-group">
                 {this.state.chatters.map((msg, index) => (
-                  <li className="profile" key={msg.messageId} onClick={this.tlk.bind(this, msg.user,index)}>
-                    
+                  <li className="profile" key={msg.messageId} onClick={this.tlk.bind(this, msg.user, index)}>
                     <div className="media">
-                      <img className="avatar" alt={msg.user.name} src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png" />
+                      <img className="avatar" alt={msg.user.name} src={(msg.user.avatar != null) ? msg.user.avatar : "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png"} />
                       <div className="media-body">
-                        <a className="">{msg.user.name}</a>
+                        <a className="">{msg.user.name} </a>
                         <p className={(msg.status) ? 'read content-wrap' : 'unread content-wrap'}>{msg.status} {msg.content}</p>
                       </div>
                     </div>
@@ -139,7 +139,7 @@ class Chat extends Component {
               <div className="col-md-12">
                 <div className="panel panel-primary">
                   <div className="panel-heading">
-                    <span className="glyphicon glyphicon-comment"></span> {(this.state.tlk)?this.state.tlk.name:'Pick a pow'}
+                    <span className="glyphicon glyphicon-comment"></span> {(this.state.tlk) ? this.state.tlk.name : 'Pick a pow'}
                     <div className="btn-group pull-right">
                       <button type="button" className="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                         <span className="glyphicon glyphicon-chevron-down"></span>

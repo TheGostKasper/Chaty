@@ -61,7 +61,10 @@ module.exports = {
             return callFetch(`users/${id}`, 'PUT', user);
         },
         searchUsers: (page, search) => {
-            return callFetch('users/search', 'POST', { page: page, search: search,pageSize:20 });
+            return callFetch('users/search', 'POST', { page: page, search: search, pageSize: 20 });
+        },
+        getNotification: (userId) => {
+            return callFetch(`messages/notification?userId=${userId}`, 'Get');
         }
     }
 

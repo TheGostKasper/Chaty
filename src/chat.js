@@ -126,7 +126,7 @@ class Chat extends Component {
                       <img className="avatar" alt={msg.user.name} src={(msg.user.avatar != null) ? msg.user.avatar : "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png"} />
                       <div className="media-body">
                         <a className="">{msg.user.name} </a>
-                        <p className={(msg.status) ? 'read content-wrap' : 'unread content-wrap'}>{msg.status} {msg.content}</p>
+                        <p className={(msg.status) ? 'read content-wrap' : 'unread content-wrap'}>{msg.content}</p>
                       </div>
                     </div>
                   </li>

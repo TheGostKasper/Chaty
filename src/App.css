@@ -10,6 +10,7 @@
 }
 .App-header ul{
   display: inline-flex;
+  width: 300px;
 }
 .App-header ul li a{
   text-decoration: none;
@@ -388,10 +389,8 @@ pre{
 
 
 .dropbtn {
-  background-color: #2e6ea6;
-  color: white;
-  padding: 8px;
-  border-radius: 50%;
+  background-color: #222222;
+   color: #275e8e;
   border: none;
 }
 .outbtn{
@@ -408,10 +407,14 @@ pre{
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color:#275e8e;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  right: -40px;
+  top: 39px;
+  width: 300px;
+  
 }
 
 .dropdown-content a {
@@ -423,12 +426,29 @@ pre{
 
 .dropdown-content a:hover {background-color: #ddd}
 
-.dropdown:hover .dropdown-content {
+.block {
   display: block;
 }
-
+.dropdown-content ul li div.media:hover{
+background:#00000082;
+}
+.z-index-0{
+  z-index: 0 !important;
+}
+.notiy{
+  padding: 5px;
+}
+.notiy p{
+  font-size: 15px;
+  word-wrap: break-word;
+  color: black;
+  margin: 2px 0px 0px 0px;
+}
+.width{
+  width: 100%;
+}
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  color: #ddd;
 }
 .input-group .form-control{
   z-index: 0;

@@ -16,9 +16,10 @@ class App extends Component {
     super(props);
     this.state = {
       value: 'Mubo',
-      port:'http://localhost:56395',
+      port: 'http://localhost:56395',
       hubConnection: null,
       redirect: false,
+      notify: false,
       notification: []
     }
     this.state.currentUser = JSON.parse(cookies_services.getCookie('currUser'));
@@ -29,7 +30,6 @@ class App extends Component {
     this.setState({ hubConnection }, () => {
       this.state.hubConnection
         .start(() => {
-
         })
         .then(() => {
           if (this.state.currentUser)
@@ -45,12 +45,17 @@ class App extends Component {
     if (this.state.currentUser)
       services.getNotification(this.state.currentUser.userId)
         .then((e) => {
-          console.log(e);
           this.setState({
-            notification : e.data
+            notification: e.data
           })
         }
         ).catch((err) => console.log(err))
+  }
+  toggleNotify = () => {
+      this.setState({ notify: !this.state.notify })
+  }
+  hideNotify=()=>{
+    this.setState({ notify: false })
   }
   componentDidMount = () => {
     this.state.hubConnection.on('changeStatus', (user) => {
@@ -89,11 +94,23 @@ class App extends Component {
 
                 <h1 className="App-title">
                   <div className="dropdown">
-                    <button className="dropbtn">
+                    <button className="dropbtn" onClick={this.toggleNotify}>
                       <i className="fa fa-bell"></i>
                     </button>
-                    <div className="dropdown-content">
-
+                    <div className={(this.state.notify) ? "dropdown-content block" : "dropdown-content"}>
+                      <ul className="list-group">
+                        {this.state.notification.map((msg, index) => (
+                          <li className="profile" key={msg.messageId} onClick={console.log(this, msg.user, index)}>
+                            <div className="media width">
+                              <img className="avatar" alt={msg.user.name} src={(msg.user.avatar != null) ? msg.user.avatar : "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png"} />
+                              <div className="notiy">
+                                <span>{msg.user.name}</span>
+                                <p>{msg.content}</p>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                   <button className="outbtn" onClick={this.logout}>
@@ -129,7 +146,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-      </Router>
+      </Router >
     );
   }
 }

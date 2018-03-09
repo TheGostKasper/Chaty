@@ -38,7 +38,7 @@ class Search extends Component {
                 <div className="input-group">
                     <input type="text" className="form-control" placeholder="Search for..." onChange={this.searchUser} />
                     <span className="input-group-btn">
-                        <button className="btn btn-default" type="button">Go!</button>
+                        <button className="btn btn-default z-index-0" type="button">Go!</button>
                     </span>
                 </div>
                 <div className="users">

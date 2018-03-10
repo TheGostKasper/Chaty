@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from './input';
+import Input from './common/input';
 import { cookies_services } from './services/cookies-service';
 import { services } from './services/chaty-service';
 

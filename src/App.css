@@ -425,7 +425,13 @@ pre{
 }
 
 .dropdown-content a:hover {background-color: #ddd}
-
+.notify-length{
+  /* position: fixed; */
+    font-size: 15px;
+    color: red;
+    top: 5px;
+    margin-left: -4px;
+}
 .block {
   display: block;
 }

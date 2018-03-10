@@ -82,7 +82,7 @@ class UserList extends Component {
 		return (
 			<div >
 				<ul className="list-group">{listItems}</ul>
-				<Modal modal={{ title: "modal", body: body, showClass: this.state.showClass }}
+				<Modal modal={{ title: "Message", body: body, showClass: this.state.showClass }}
 					close={this.close}
 					submit={this.submit}
 				/>

@@ -52,9 +52,9 @@ class App extends Component {
         ).catch((err) => console.log(err))
   }
   toggleNotify = () => {
-      this.setState({ notify: !this.state.notify })
+    this.setState({ notify: !this.state.notify })
   }
-  hideNotify=()=>{
+  hideNotify = () => {
     this.setState({ notify: false })
   }
   componentDidMount = () => {
@@ -62,6 +62,12 @@ class App extends Component {
       cookies_services.setCookie('connectionId', user.connectionId, 60);
       // console.log(cookies_services.getCookie("connectionId"));
     });
+    this.state.hubConnection.on('sendPM', (receivedMessage) => {
+      this.state.notification.push(receivedMessage);
+      this.setState({
+        notification: this.state.notification
+      })
+    })
   }
   logout = () => {
     cookies_services.deleteCookies(['token', 'currUser', 'connectionId']);
@@ -95,10 +101,11 @@ class App extends Component {
                 <h1 className="App-title">
                   <div className="dropdown">
                     <button className="dropbtn" onClick={this.toggleNotify}>
+                      <span className="notify-length">{this.state.notification.length}</span>
                       <i className="fa fa-bell"></i>
                     </button>
                     <div className={(this.state.notify) ? "dropdown-content block" : "dropdown-content"}>
-                      <ul className="list-group">
+                      <ul className="list-group block">
                         {this.state.notification.map((msg, index) => (
                           <li className="profile" key={msg.messageId} onClick={console.log(this, msg.user, index)}>
                             <div className="media width">

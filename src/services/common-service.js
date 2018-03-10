@@ -5,6 +5,9 @@ module.exports = {
         scrollToBottom: (className) => {
             document.querySelector(className).scrollTo(0, document.querySelector(className).scrollHeight);
         },
+        emptyContent: (name) => {
+            document.getElementById(name).value=''
+        },
         highlightDiv: (_index, className) => {
             const slcs = document.querySelectorAll(className);
             for (let index = 0; index < slcs.length; index++) {

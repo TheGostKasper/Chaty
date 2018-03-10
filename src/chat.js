@@ -51,21 +51,29 @@ class Chat extends Component {
     });
   }
   sendMessage = () => {
-    this.setState({
-      message: Object.assign(
-        this.state.message,
-        {
-          toUser: this.state.currentUser,
-          fromUserId: this.state.currentUser.userId,
-          status: false,
-          toUserId: this.state.tlk.userId
-        }
-      )
+    this.setState(prevState => ({
+      message: {
+        ...prevState.message,
+        toUser: this.state.currentUser,
+        fromUserId: this.state.currentUser.userId,
+        status: false,
+        toUserId: this.state.tlk.userId
+      }
+    }), () => {
+      this.state.prevMsgs.push(this.state.message);
+      this.setState({
+        prevMsgs: this.state.prevMsgs,
+        chatters: this.state.chatters.map(e => {
+          e.content = (e.toUserId === this.state.message.toUserId && e.fromUserId === this.state.message.fromUserId) ? this.state.message.content : e.content; return e;
+        })
+      }, () => {
+        common.emptyContent('messageContent');
+        common.scrollToBottom(".panel-body");
+        this.props.hubConnection
+          .invoke('sendPM', this.state.message)
+          .catch(err => console.error(err));
+      });
     });
-
-    this.props.hubConnection
-      .invoke('sendPM', this.state.message)
-      .catch(err => console.error(err));
   };
   appendAndSet = (stateName, value, stateObj) => {
     stateObj.push(value);
@@ -155,7 +163,7 @@ class Chat extends Component {
                   </div>
                   <div className="panel-footer">
                     <div className="input-group">
-                      <input id="btn-input" type="textarea" className="form-control input-sm" placeholder="Type your message here..."
+                      <input id="messageContent" type="textarea" className="form-control input-sm messageContent" placeholder="Type your message here..."
                         onChange={e => this.setState({ message: { content: e.target.value } })}
                         onClick={this.read}
                       />
@@ -168,13 +176,7 @@ class Chat extends Component {
                 </div>
               </div>
             </div>
-            <div className="content">
-              {this.state.messages.map((message, index) => (
-                <div className="message" key={index}>
-                  <span style={{ display: 'block' }} > {message.content} </span>
-                </div>
-              ))}
-            </div>
+
           </div>
         </div>
       </div >

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { services } from './services/chaty-service';
 import { cookies_services } from './services/cookies-service';
 
-import Input from './input';
+import Input from './common/input';
 
 const common = require('./services/encrypt-service').encode;
 

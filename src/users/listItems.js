@@ -62,7 +62,7 @@ class UserList extends Component {
 		const listItems = this.props.users.map((user) =>
 			<li className="list-group-item" key={user.userId}>
 				<div className="media">
-					<img className="avatar" alt={user.name} src={(user.avatar) ? user.avatar : "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png"} />
+					<img className="avatar" alt={user.name} src={(user.avatar) ? user.avatar : "http://localhost:56395/Images/default.jpg"} />
 					<div className="media-body">
 						<a className="">{user.name}</a>
 						<div className="actions-list">

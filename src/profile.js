@@ -12,7 +12,7 @@ class Profile extends Component {
 		this.state = {
 			user: {},
 			prof: '',
-			friend:false
+			friend: false
 		}
 		this.state.currentUser = this.state.user = JSON.parse(cookies_services.getCookie('currUser'));
 		this.state.user.password = common.b64DecodeUnicode(this.state.user.password);

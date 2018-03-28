@@ -64,7 +64,11 @@ class Chat extends Component {
       this.setState({
         prevMsgs: this.state.prevMsgs,
         chatters: this.state.chatters.map(e => {
-          e.content = (e.toUserId === this.state.message.toUserId && e.fromUserId === this.state.message.fromUserId) ? this.state.message.content : e.content; return e;
+          e.content = (
+            e.toUserId === this.state.message.toUserId
+            && e.fromUserId === this.state.message.fromUserId
+          )
+            ? this.state.message.content : e.content; return e;
         })
       }, () => {
         common.emptyContent('messageContent');
@@ -131,7 +135,7 @@ class Chat extends Component {
                 {this.state.chatters.map((msg, index) => (
                   <li className="profile" key={msg.messageId} onClick={this.tlk.bind(this, msg.user, index)}>
                     <div className="media">
-                      <img className="avatar" alt={msg.user.name} src={(msg.user.avatar != null) ? msg.user.avatar : "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-128.png"} />
+                      <img className="avatar" alt={msg.user.name} src={(msg.user.avatar != null) ? msg.user.avatar : "http://localhost:56395/Images/default.jpg"} />
                       <div className="media-body">
                         <a className="">{msg.user.name} </a>
                         <p className={(msg.status) ? 'read content-wrap' : 'unread content-wrap'}>{msg.content}</p>
